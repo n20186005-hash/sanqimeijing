@@ -1,0 +1,16 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="找不到頁面｜三奇美徑" noindex={true}>
+  <section class="relative grid min-h-[78vh] place-items-center overflow-hidden bg-rice-950 px-4 pt-20 text-center text-white">
+    <img src="/images/sanqi-golden-aerial.webp" alt="" width="1920" height="1275" class="absolute inset-0 size-full object-cover opacity-20" />
+    <div class="absolute inset-0 bg-rice-950/55"></div>
+    <div class="relative max-w-2xl">
+      <p class="font-serif text-8xl font-black text-grain-300">404</p>
+      <h1 class="mt-4 font-serif text-4xl font-black sm:text-6xl">這條路走到田邊了</h1>
+      <p class="mx-auto mt-6 max-w-lg leading-8 text-white/65">你尋找的頁面不存在，回到首頁查看三奇美徑的季節、交通與慢遊資訊。</p>
+      <a href="/" class="mt-8 inline-flex rounded-full bg-grain-300 px-7 py-3.5 text-sm font-black text-rice-950 transition hover:bg-white">回到首頁</a>
+    </div>
+  </section>
+</BaseLayout>

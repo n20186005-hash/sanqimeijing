@@ -1,0 +1,12 @@
+{
+  "name": "三奇美徑｜宜蘭冬山伯朗大道",
+  "short_name": "三奇美徑",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fbfcf4",
+  "theme_color": "#374322",
+  "lang": "zh-Hant-TW",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

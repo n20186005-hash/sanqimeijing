@@ -1,0 +1,49 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { site } from '@/data/site';
+---
+
+<BaseLayout
+  title={`隱私權說明｜${site.name}`}
+  description="SanqiMeijing.com 的網站分析、Cookie 與隱私權使用說明。"
+>
+  <section class="bg-rice-950 pb-20 pt-36 text-white sm:pb-24 sm:pt-44">
+    <div class="section-shell max-w-4xl">
+      <p class="text-xs font-black tracking-[0.18em] text-grain-300">PRIVACY</p>
+      <h1 class="mt-5 font-serif text-5xl font-black sm:text-7xl">隱私權說明</h1>
+      <p class="mt-6 max-w-2xl leading-8 text-white/62">本站不提供會員、登入、留言或預訂功能，也不建立使用者資料庫。</p>
+    </div>
+  </section>
+
+  <article class="section-shell max-w-4xl py-20 sm:py-28">
+    <div class="space-y-12">
+      <section>
+        <h2 class="font-serif text-3xl font-black text-rice-950">網站分析</h2>
+        <div class="mt-5 space-y-4 text-base leading-8 text-rice-800/75">
+          <p>本站使用 Google Analytics 4（評估代碼：{site.ga4}）了解頁面瀏覽、裝置類型、導覽點擊等整體使用情況，以便改善內容與操作體驗。</p>
+          <p>分析服務可能透過 Cookie 或類似技術處理瀏覽器與裝置資訊。本站設定 IP 匿名化，不會要求使用者提供姓名、電話、電子郵件或身分證明資料。</p>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="font-serif text-3xl font-black text-rice-950">外部導航</h2>
+        <p class="mt-5 text-base leading-8 text-rice-800/75">本站僅在需要實際路線導航時提供地圖服務連結。點擊後將離開本站，後續資料處理由該服務依其政策管理。</p>
+      </section>
+
+      <section>
+        <h2 class="font-serif text-3xl font-black text-rice-950">影像與內容</h2>
+        <p class="mt-5 text-base leading-8 text-rice-800/75">網站使用的景點實景影像以宜蘭縣政府及冬山鄉公所公開旅遊影像為主要來源，並在網站頁尾標示影像來源。網站文字為旅遊資訊整理，不代表任何政府機關或景點管理單位。</p>
+      </section>
+
+      <section>
+        <h2 class="font-serif text-3xl font-black text-rice-950">資料正確性</h2>
+        <p class="mt-5 text-base leading-8 text-rice-800/75">稻作、收割、活動、交通與設施狀態可能因天候、農務及主辦安排調整。本站會盡力維護資料，但不保證所有資訊在任何時間皆完全即時，行程仍應以現場公告為準。</p>
+      </section>
+
+      <section class="rounded-[2rem] bg-rice-100 p-7">
+        <h2 class="font-serif text-2xl font-black text-rice-950">更新日期</h2>
+        <p class="mt-3 text-sm leading-7 text-rice-800/70">本說明最後更新於 2026 年 7 月 29 日。</p>
+      </section>
+    </div>
+  </article>
+</BaseLayout>

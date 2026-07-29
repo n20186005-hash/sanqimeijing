@@ -1,0 +1,50 @@
+---
+import { site } from '@/data/site';
+---
+
+<footer class="border-t border-rice-200 bg-rice-950 text-white">
+  <div class="section-shell grid gap-10 py-14 md:grid-cols-[1.2fr_0.8fr_0.8fr]">
+    <div>
+      <div class="mb-5 flex items-center gap-3">
+        <span class="grid size-11 place-items-center rounded-full bg-white/10">
+          <svg viewBox="0 0 36 36" class="size-7" aria-hidden="true">
+            <path d="M5 29c7-1 9-8 12-14 2-5 6-8 14-8-1 7-5 12-10 15-5 2-9 5-11 9" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" />
+            <path d="M10 27c5-1 8 0 12 4" fill="none" stroke="#e8ca79" stroke-width="2" stroke-linecap="round" />
+          </svg>
+        </span>
+        <div>
+          <p class="font-serif text-xl font-bold tracking-[0.12em]">三奇美徑</p>
+          <p class="text-xs tracking-[0.16em] text-white/55">宜蘭冬山伯朗大道</p>
+        </div>
+      </div>
+      <p class="max-w-md text-sm leading-7 text-white/65">
+        以實用、簡潔的方式整理稻田季節、交通停車與慢遊路線。三奇美徑位於真實農業生產區，請尊重農作、留在道路範圍並帶走垃圾。
+      </p>
+    </div>
+
+    <div>
+      <p class="mb-4 text-xs font-black tracking-[0.18em] text-grain-300">快速資訊</p>
+      <div class="grid gap-2 text-sm text-white/70">
+        <a class="hover:text-white" href="#season">稻田最佳季節</a>
+        <a class="hover:text-white" href="#route">交通與停車</a>
+        <a class="hover:text-white" href="#tips">旅行提醒</a>
+        <a class="hover:text-white" href="/privacy/">隱私權說明</a>
+      </div>
+    </div>
+
+    <div>
+      <p class="mb-4 text-xs font-black tracking-[0.18em] text-grain-300">景點聯絡</p>
+      <div class="space-y-3 text-sm leading-6 text-white/70">
+        <p>冬山觀光所<br /><a class="text-white hover:text-grain-300" href={`tel:${site.phone.replaceAll('-', '')}`}>{site.phone}</a></p>
+        <p>{site.navigationAddress}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="border-t border-white/10">
+    <div class="section-shell flex flex-col gap-3 py-6 text-xs text-white/45 sm:flex-row sm:items-center sm:justify-between">
+      <p>© {new Date().getFullYear()} {site.domain}．非官方旅遊指南</p>
+      <p>實景影像來源：宜蘭縣政府「宜蘭勁好玩」、冬山鄉公所</p>
+    </div>
+  </div>
+</footer>
