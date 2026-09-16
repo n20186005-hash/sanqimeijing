@@ -99,4 +99,6 @@ G-HXM22WWPKP
 
 ## Cloudflare 回應標頭與轉址
 
-`public/_headers` 已設定基本安全標頭、GA4 所需 CSP 與圖片長效快取；`public/_redirects` 會將 `www.SanqiMeijing.com` 301 轉向主網域。
+`public/_headers` 已設定基本安全標頭、GA4 所需 CSP 與圖片長效快取；`public/_redirects` 會將 `http://` 全站 301 轉向 `https://`，並將 `www.SanqiMeijing.com` 301 轉向主網域。
+
+標準網址統一為 `https://sanqimeijing.com/`，並由 `<link rel="canonical">`、`sitemap.xml` 與 `robots.txt` 一併宣告；若 GSC 仍出現 `http://` 版本，請在 Cloudflare Dashboard 額外開啟 Always Use HTTPS 與 Automatic HTTPS Rewrites。

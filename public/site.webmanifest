@@ -1,12 +1,36 @@
 {
   "name": "三奇美徑｜宜蘭冬山伯朗大道",
   "short_name": "三奇美徑",
+  "id": "/",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
+  "display_override": ["standalone", "minimal-ui", "browser"],
   "background_color": "#fbfcf4",
   "theme_color": "#374322",
   "lang": "zh-Hant-TW",
+  "dir": "ltr",
+  "description": "三奇美徑（宜蘭冬山伯朗大道）旅行指南：稻田季節、交通停車、拍照位置與 Google 評價。",
+  "categories": ["travel", "tourism"],
   "icons": [
-    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    {
+      "name": "查看最佳季節",
+      "short_name": "最佳季節",
+      "url": "/#season"
+    },
+    {
+      "name": "交通與停車",
+      "short_name": "交通路線",
+      "url": "/#route"
+    },
+    {
+      "name": "Google 評價",
+      "short_name": "旅人評價",
+      "url": "/#reviews"
+    }
   ]
 }

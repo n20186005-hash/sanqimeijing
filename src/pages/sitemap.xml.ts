@@ -9,7 +9,7 @@ export const GET: APIRoute = () => {
   const urls = pages
     .map(
       ({ path, priority, changefreq }) => `  <url>
-    <loc>https://SanqiMeijing.com${path}</loc>
+    <loc>https://sanqimeijing.com${path}</loc>
     <changefreq>${changefreq}</changefreq>
     <priority>${priority}</priority>
   </url>`,

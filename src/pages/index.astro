@@ -1,12 +1,13 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import { facts, faqs, fieldStatus, seasons, site } from '@/data/site';
+import { facts, faqs, fieldStatus, nearbyLandmarks, reviews, seasons, site } from '@/data/site';
 
 const touristAttractionSchema = {
   '@context': 'https://schema.org',
   '@type': 'TouristAttraction',
+  '@id': `${site.url}/#attraction`,
   name: '冬山三奇美徑',
-  alternateName: ['宜蘭伯朗大道', '冬山伯朗大道', '三奇稻間美徑'],
+  alternateName: ['三奇美徑', '宜蘭冬山伯朗大道', '宜蘭伯朗大道', '冬山伯朗大道', '三奇稻間美徑'],
   description: site.description,
   url: site.url,
   image: [
@@ -21,6 +22,7 @@ const touristAttractionSchema = {
     streetAddress: '三奇村三奉路77號附近',
     addressLocality: '冬山鄉',
     addressRegion: '宜蘭縣',
+    postalCode: site.postalCode,
     addressCountry: 'TW',
   },
   geo: {
@@ -28,6 +30,8 @@ const touristAttractionSchema = {
     latitude: site.coordinates.latitude,
     longitude: site.coordinates.longitude,
   },
+  hasMap: site.mapsShareUrl,
+  sameAs: [site.mapsShareUrl, site.govtTourism.url],
   openingHoursSpecification: {
     '@type': 'OpeningHoursSpecification',
     dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
@@ -35,6 +39,17 @@ const touristAttractionSchema = {
     closes: '23:59',
   },
   touristType: ['攝影旅客', '親子旅客', '自行車旅客', '自然景觀旅客'],
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: '台灣', item: `${site.url}/#taiwan` },
+    { '@type': 'ListItem', position: 2, name: '宜蘭縣', item: `${site.url}/#yilan` },
+    { '@type': 'ListItem', position: 3, name: '冬山鄉', item: `${site.url}/#dongshan` },
+    { '@type': 'ListItem', position: 4, name: '三奇美徑（宜蘭冬山伯朗大道）', item: `${site.url}/#attraction` },
+  ],
 };
 
 const faqSchema = {
@@ -54,12 +69,13 @@ const faqSchema = {
 <BaseLayout>
   <script type="application/ld+json" set:html={JSON.stringify(touristAttractionSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
 
   <!-- Hero -->
   <section class="noise relative isolate min-h-[780px] overflow-hidden bg-rice-950 text-white lg:min-h-[860px]">
     <img
       src="/images/sanqi-green-road.jpg"
-      alt="三奇美徑翠綠稻田、彩繪稻田與騎自行車的旅客"
+      alt="三奇美徑（宜蘭冬山伯朗大道）主視野 — 台灣宜蘭縣冬山鄉翠綠稻田、彩繪稻田與田間道路"
       width="1920"
       height="1279"
       fetchpriority="high"
@@ -77,12 +93,35 @@ const faqSchema = {
 
         <p class="mb-5 font-serif text-lg tracking-[0.28em] text-grain-100 sm:text-xl">走進宜蘭稻田裡的九道 S 彎</p>
         <h1 class="text-balance font-serif text-6xl leading-[0.98] font-black tracking-[0.04em] sm:text-7xl lg:text-[7rem]">
-          三奇<br class="sm:hidden" />美徑
+          三奇<br class="sm:hidden" />美徑<span class="sr-only">（宜蘭冬山伯朗大道）</span>
         </h1>
         <p class="mt-6 text-xl font-bold tracking-[0.08em] text-white/86 sm:text-2xl">宜蘭冬山伯朗大道</p>
         <p class="pretty mt-7 max-w-2xl text-base leading-8 text-white/76 sm:text-lg">
           一條約兩公里的田間小路，沿著九道彎曲農路穿過真實稻田。春夏看新綠與金黃，慢慢走、慢慢騎，也把農村日常留在原來的位置。
         </p>
+
+        <div class="mt-7">
+          <a
+            href={site.mapsShareUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-ga-event="review_click"
+            class="inline-flex flex-wrap items-center gap-x-3 gap-y-2 rounded-full border border-white/25 bg-white/10 px-5 py-3 backdrop-blur-md transition hover:bg-white/20"
+          >
+            <span class="flex items-center gap-0.5" aria-hidden="true">
+              {[0, 1, 2, 3].map(() => (
+                <svg viewBox="0 0 24 24" class="size-4 fill-grain-300"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2l-6.1 3.4 1.4-6.8L2.2 9.1l6.9-.8L12 2z"/></svg>
+              ))}
+              <svg viewBox="0 0 24 24" class="size-4 fill-white/35"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2l-6.1 3.4 1.4-6.8L2.2 9.1l6.9-.8L12 2z"/></svg>
+            </span>
+            <span class="font-black text-white">{reviews.ratingLabel}</span>
+            <span class="text-sm font-semibold text-white/78">（{reviews.countLabel} 則 Google 地圖評價）</span>
+          </a>
+          <p class="mt-3 text-xs leading-6 text-white/58">
+            評分與評價數同步自谷歌地圖（Google Maps）用戶評價 · {reviews.syncedAt} ·
+            <a href={site.mapsShareUrl} target="_blank" rel="noopener noreferrer" class="font-bold text-grain-300 underline decoration-grain-300/40 underline-offset-4 hover:text-white">點擊查看谷歌地圖全部評價↗</a>
+          </p>
+        </div>
 
         <div class="mt-9 flex flex-wrap gap-3">
           <a href="#season" class="inline-flex items-center gap-2 rounded-full bg-grain-300 px-6 py-3.5 text-sm font-black text-rice-950 transition hover:-translate-y-0.5 hover:bg-white">
@@ -161,10 +200,10 @@ const faqSchema = {
     <div class="section-shell grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20">
       <div class="relative min-h-[560px]">
         <figure class="absolute left-0 top-0 w-[78%] overflow-hidden rounded-[2.5rem] card-shadow">
-          <img src="/images/sanqi-golden-aerial.webp" alt="從空中俯瞰三奇美徑金黃色稻田與彎曲農路" width="1920" height="1275" loading="lazy" class="aspect-[4/5] size-full object-cover" />
+          <img src="/images/sanqi-golden-aerial.webp" alt="從空中俯瞰三奇美徑（宜蘭冬山伯朗大道）金黃色稻田與彎曲農路" width="1920" height="1275" loading="lazy" class="aspect-[4/5] size-full object-cover" />
         </figure>
         <figure class="float-soft absolute bottom-0 right-0 w-[58%] overflow-hidden rounded-[2rem] border-8 border-rice-50 card-shadow">
-          <img src="/images/sanqi-view-platform.webp" alt="三奇美徑觀景平台與金黃田野" width="1600" height="1068" loading="lazy" class="aspect-[4/3] size-full object-cover" />
+          <img src="/images/sanqi-view-platform.webp" alt="三奇美徑觀景平台與宜蘭冬山金黃田野" width="1600" height="1068" loading="lazy" class="aspect-[4/3] size-full object-cover" />
         </figure>
         <div class="absolute right-[4%] top-[10%] grid size-28 place-items-center rounded-full bg-grain-300 text-center text-rice-950 shadow-xl sm:size-32">
           <p class="font-serif text-sm font-black leading-6">九道<br /><span class="text-3xl">S</span> 彎</p>
@@ -175,11 +214,34 @@ const faqSchema = {
         <span class="eyebrow">Sanqi Scenic Path</span>
         <h2 class="text-balance mt-5 font-serif text-4xl leading-tight font-black text-rice-950 sm:text-6xl">不是仿造的景點，<br />而是仍在耕作的風景</h2>
         <p class="pretty mt-7 text-base leading-8 text-rice-800/76">
-          三奇美徑位於冬山鄉三奇村，介於奉尊宮與協松路之間。約五米寬的農路，在大片平坦稻田裡連續轉出九個 S 形彎道；視線少有高樓與電線桿阻擋，形成宜蘭少見的遼闊田野景觀。
+          歡迎來到三奇美徑（SanqiMeijing），即旅人廣為人知的宜蘭冬山伯朗大道。位於台灣宜蘭縣冬山鄉三奇村，介於奉尊宮與協松路之間；約五米寬的農路，在大片平坦稻田裡連續轉出九個 S 形彎道，視線少有高樓與電線桿阻擋，形成宜蘭少見的遼闊田野景觀，也是造訪宜蘭旅客的核心目的地之一。
         </p>
         <p class="pretty mt-5 text-base leading-8 text-rice-800/76">
-          這裡被旅人暱稱為「宜蘭伯朗大道」，但真正值得感受的，是騎過稻香、遠山與農忙節奏的冬山日常。請留在道路與開放區域，不走入稻田、不踩田埂，也不打擾農機作業。
+          造訪三奇美徑時，旅人也能順道探索周邊地標與景點，包括{nearbyLandmarks.map((landmark) => landmark.name).join('與')}。請留在道路與開放區域，不走入稻田、不踩田埂，也不打擾農機作業。
         </p>
+        <p class="pretty mt-5 text-base leading-8 text-rice-800/76">
+          這裡被旅人暱稱為「宜蘭伯朗大道」，但真正值得感受的，是騎過稻香、遠山與農忙節奏的冬山日常。
+        </p>
+
+        <nav aria-label="地理位置層級" class="mt-8 flex flex-wrap items-center gap-2 text-sm font-bold text-rice-700/75">
+          <span>三奇美徑</span>
+          <svg viewBox="0 0 24 24" class="size-3.5" aria-hidden="true"><path d="m9 5 7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>冬山鄉</span>
+          <svg viewBox="0 0 24 24" class="size-3.5" aria-hidden="true"><path d="m9 5 7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>宜蘭縣</span>
+          <svg viewBox="0 0 24 24" class="size-3.5" aria-hidden="true"><path d="m9 5 7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>台灣</span>
+        </nav>
+
+        <h3 class="mt-10 text-xs font-black tracking-[0.18em] text-rice-600">順道探索周邊地標</h3>
+        <ul class="mt-4 grid gap-4 sm:grid-cols-2">
+          {nearbyLandmarks.map((landmark) => (
+            <li class="rounded-3xl border border-rice-200 bg-white/72 p-5">
+              <p class="font-black text-rice-950">{landmark.name}</p>
+              <p class="mt-2 text-sm leading-7 text-rice-800/70">{landmark.description}</p>
+            </li>
+          ))}
+        </ul>
 
         <dl class="mt-9 grid grid-cols-2 gap-x-6 gap-y-6 border-t border-rice-200 pt-8">
           <div>
@@ -212,6 +274,9 @@ const faqSchema = {
           <h2 class="text-balance mt-5 font-serif text-4xl leading-tight font-black sm:text-6xl">跟著稻田的時間來</h2>
           <p class="pretty mt-6 max-w-md leading-8 text-white/62">
             網路上最常見的翠綠與金黃畫面，多集中在春末至初夏。安排前先理解農期，比單看月份更可靠。
+          </p>
+          <p class="pretty mt-5 max-w-md rounded-3xl border border-white/12 bg-white/[0.05] p-5 leading-8 text-white/78">
+            一句話：<strong class="font-black text-grain-300">5 月至 6 月</strong>最值得安排，稻田由翠綠轉為金黃；<strong class="font-black text-grain-300">6 月底至 7 月</strong>陸續進入收割，地景會在短時間內改變。
           </p>
         </div>
 
@@ -322,6 +387,10 @@ const faqSchema = {
             <svg viewBox="0 0 24 24" class="size-5" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5Z"/></svg>
             導航至三奇美徑
           </a>
+          <p class="mt-6 max-w-md text-sm leading-7 text-rice-800/62">
+            更多宜蘭官方旅遊資訊，請參閱
+            <a href={site.govtTourism.url} target="_blank" rel="noopener noreferrer" class="font-bold text-rice-800 underline decoration-rice-400 underline-offset-4 hover:text-rice-950">{site.govtTourism.name}↗</a>。
+          </p>
         </div>
 
         <div class="sticky top-28 overflow-hidden rounded-[2.5rem] bg-white p-4 card-shadow sm:p-7">
@@ -418,7 +487,7 @@ const faqSchema = {
         <article class="rounded-[2rem] border border-rice-200 bg-white p-7">
           <div class="flex items-center justify-between"><span class="text-xs font-black tracking-[0.14em] text-rice-600">半日</span><span class="grid size-10 place-items-center rounded-full bg-grain-100 text-rice-800">03</span></div>
           <h3 class="mt-8 text-2xl font-black">冬山田園版</h3>
-          <ol class="mt-6 space-y-4 text-sm leading-7 text-rice-800/68"><li>三奇美徑晨間散步</li><li>冬山車站與老街</li><li>冬山河舊河道</li><li>生態綠舟午後慢遊</li></ol>
+          <ol class="mt-6 space-y-4 text-sm leading-7 text-rice-800/68"><li>三奇美徑晨間散步</li><li>冬山老街午餐</li><li>大鯖魚夢工廠（雨備）</li><li>冬山河親水公園午後</li></ol>
         </article>
       </div>
     </div>
@@ -434,7 +503,7 @@ const faqSchema = {
 
       <div class="grid auto-rows-[230px] gap-4 sm:grid-cols-2 lg:grid-cols-12 lg:auto-rows-[240px]">
         <figure class="group relative overflow-hidden rounded-[2rem] sm:row-span-2 lg:col-span-7">
-          <img src="/images/sanqi-green-road.jpg" alt="翠綠季節的三奇美徑與自行車旅客" width="1920" height="1279" loading="lazy" class="size-full object-cover transition duration-700 group-hover:scale-105" />
+          <img src="/images/sanqi-green-road.jpg" alt="翠綠季節的三奇美徑（宜蘭冬山伯朗大道）與自行車旅客" width="1920" height="1279" loading="lazy" class="size-full object-cover transition duration-700 group-hover:scale-105" />
           <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-rice-950/75 to-transparent p-6 pt-14 text-sm font-bold text-white">翠綠稻田與單車漫遊</figcaption>
         </figure>
         <figure class="group relative overflow-hidden rounded-[2rem] lg:col-span-5">
@@ -453,6 +522,48 @@ const faqSchema = {
           <img src="/images/sanqi-kite-festival.webp" alt="三奇美徑收割後舉辦的風箏嘉年華" width="1600" height="1062" loading="lazy" class="size-full object-cover object-[50%_52%] transition duration-700 group-hover:scale-105" />
           <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-rice-950/75 to-transparent p-6 pt-14 text-sm font-bold text-white">收割後的風箏天空</figcaption>
         </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews（同步自 Google 地圖用戶評價，僅頁面展示、不進 JSON-LD） -->
+  <section id="reviews" class="scroll-mt-20 py-24 sm:py-32">
+    <div class="section-shell">
+      <div class="grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+        <div>
+          <span class="eyebrow">Visitor Reviews</span>
+          <h2 class="text-balance mt-5 font-serif text-4xl leading-tight font-black text-rice-950 sm:text-6xl">旅人在 Google 地圖上怎麼說</h2>
+          <p class="pretty mt-6 max-w-md leading-8 text-rice-800/68">
+            三奇美徑（宜蘭冬山伯朗大道）在 Google 地圖上累積了來自廣大旅人的評價。以下評分與評價數同步自 Google 地圖，完整內容請前往 Google 地圖查看。
+          </p>
+          <p class="mt-6 max-w-md text-sm leading-7 text-rice-800/55">
+            {reviews.sourceNote}
+          </p>
+        </div>
+
+        <div class="overflow-hidden rounded-[2.5rem] bg-white p-8 card-shadow sm:p-12">
+          <div class="flex flex-wrap items-end gap-x-6 gap-y-4">
+            <p class="font-serif text-7xl font-black leading-none text-rice-950">{reviews.ratingLabel}</p>
+            <div>
+              <div class="flex items-center gap-1" role="img" aria-label={`Google 地圖評分 ${reviews.ratingLabel} / 5`}>
+                {[0, 1, 2, 3].map(() => (
+                  <svg viewBox="0 0 24 24" class="size-6 fill-grain-400"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2l-6.1 3.4 1.4-6.8L2.2 9.1l6.9-.8L12 2z"/></svg>
+                ))}
+                <svg viewBox="0 0 24 24" class="size-6 fill-rice-200"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2l-6.1 3.4 1.4-6.8L2.2 9.1l6.9-.8L12 2z"/></svg>
+              </div>
+              <p class="mt-2 text-sm font-bold text-rice-700/75">{reviews.countLabel} 則 Google 地圖用戶評價</p>
+            </div>
+          </div>
+
+          <p class="mt-7 border-t border-rice-200 pt-5 text-sm leading-7 text-rice-800/62">
+            評價來自 Google 地圖用戶評價，同步時間 {reviews.syncedAt}；版權歸原作者與 Google 地圖所有。本站不修改、不節選評價內容，亦未將評價納入結構化資料。
+          </p>
+
+          <a href={site.mapsShareUrl} target="_blank" rel="noopener noreferrer" data-ga-event="review_click" class="mt-7 inline-flex items-center gap-2.5 rounded-full bg-rice-800 px-7 py-3.5 text-sm font-black text-white transition hover:-translate-y-0.5 hover:bg-rice-950">
+            <svg viewBox="0 0 24 24" class="size-5" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5Z"/></svg>
+            在谷歌地圖查看全部評價
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -500,6 +611,67 @@ const faqSchema = {
             <p class="max-w-3xl pt-4 pr-12 text-sm leading-7 text-rice-800/68">{faq.answer}</p>
           </details>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Sources（E-E-A-T 資料來源） -->
+  <section id="sources" class="scroll-mt-20 border-t border-rice-200 pb-20">
+    <div class="section-shell">
+      <div class="overflow-hidden rounded-[2.5rem] bg-rice-100 p-8 sm:p-12">
+        <span class="eyebrow">Sources & Updates</span>
+        <h2 class="text-balance mt-5 font-serif text-4xl leading-tight font-black text-rice-950 sm:text-5xl">資料來源與更新說明</h2>
+        <p class="pretty mt-5 max-w-3xl text-base leading-8 text-rice-800/72">
+          本站為非官方旅遊指南，內容依公開資訊整理。以下列出各項資料的來源與同步時間，供旅人查核與延伸閱讀。
+        </p>
+
+        <dl class="mt-10 grid gap-5 md:grid-cols-2">
+          <div class="rounded-[1.75rem] bg-white p-6 card-shadow">
+            <dt class="flex items-center gap-3 text-xs font-black tracking-[0.14em] text-rice-600">
+              評價 · 同步時間 {reviews.syncedAt}
+              <span class="rounded-full bg-grain-100 px-3 py-1 text-[10px] text-rice-800">Google Maps</span>
+            </dt>
+            <dd class="mt-3 text-sm leading-7 text-rice-800/72">
+              評分與評價數同步自 Google 地圖用戶評價，同步時間 {reviews.syncedAt}；版權歸原作者與 Google 地圖所有。評價僅於頁面展示，未納入結構化資料。
+            </dd>
+            <dd class="mt-4">
+              <a href={site.mapsShareUrl} target="_blank" rel="noopener noreferrer" data-ga-event="review_click" class="inline-flex items-center gap-2 text-sm font-black text-rice-800 underline decoration-rice-400 underline-offset-4 hover:text-rice-950">
+                在谷歌地圖查看全部評價↗
+              </a>
+            </dd>
+          </div>
+
+          <div class="rounded-[1.75rem] bg-white p-6 card-shadow">
+            <dt class="text-xs font-black tracking-[0.14em] text-rice-600">實景影像</dt>
+            <dd class="mt-3 text-sm leading-7 text-rice-800/72">
+              網站實景影像以宜蘭縣政府「宜蘭勁好玩」與冬山鄉公所公開旅遊圖片為來源，並標註於頁尾。
+            </dd>
+            <dd class="mt-4">
+              <a href={site.govtTourism.url} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm font-black text-rice-800 underline decoration-rice-400 underline-offset-4 hover:text-rice-950">
+                {site.govtTourism.name}↗
+              </a>
+            </dd>
+          </div>
+
+          <div class="rounded-[1.75rem] bg-white p-6 card-shadow">
+            <dt class="text-xs font-black tracking-[0.14em] text-rice-600">田況與農期</dt>
+            <dd class="mt-3 text-sm leading-7 text-rice-800/72">
+              稻作季節與田況說明依往年農期與本季活動時程整理，最後更新 {fieldStatus.updatedAt}；現場仍以當日農務與公告為準。
+            </dd>
+          </div>
+
+          <div class="rounded-[1.75rem] bg-white p-6 card-shadow">
+            <dt class="text-xs font-black tracking-[0.14em] text-rice-600">位置與地圖</dt>
+            <dd class="mt-3 text-sm leading-7 text-rice-800/72">
+              地址 {site.fullAddress}。地圖、評價與導航資訊以 Google 地圖為準，可於地圖中查看最新內容。
+            </dd>
+            <dd class="mt-4">
+              <a href={site.mapsShareUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm font-black text-rice-800 underline decoration-rice-400 underline-offset-4 hover:text-rice-950">
+                開啟 Google 地圖↗
+              </a>
+            </dd>
+          </div>
+        </dl>
       </div>
     </div>
   </section>

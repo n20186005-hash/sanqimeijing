@@ -14,8 +14,9 @@ interface Props {
 }
 
 const {
-  title = `${site.name}｜${site.alternateName}交通、停車與最佳季節`,
-  description = site.description,
+  title = '三奇美徑（宜蘭冬山伯朗大道）最佳月份、稻田季節與交通停車完整攻略',
+  description =
+    '三奇美徑（宜蘭冬山伯朗大道）完整攻略：翠綠與金黃稻浪最佳月份、彩繪稻田期、交通停車與導航建議、冬山單車與半日遊路線，免費開放，出發前先看最新田況。',
   image = '/images/sanqi-green-road.jpg',
   noindex = false,
   showHeader = true,
@@ -38,7 +39,11 @@ const ogImage = new URL(image, site.url);
     <link rel="canonical" href={canonical} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="manifest" href="/site.webmanifest" />
-    {noindex && <meta name="robots" content="noindex,follow" />}
+    {noindex ? (
+      <meta name="robots" content="noindex,follow" />
+    ) : (
+      <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+    )}
 
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="zh_TW" />
@@ -49,7 +54,7 @@ const ogImage = new URL(image, site.url);
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1920" />
     <meta property="og:image:height" content="1279" />
-    <meta property="og:image:alt" content="三奇美徑綠色稻田與田間道路" />
+    <meta property="og:image:alt" content="三奇美徑（宜蘭冬山伯朗大道）在台灣宜蘭縣冬山鄉的翠綠稻田與田間道路" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
@@ -85,6 +90,15 @@ const ogImage = new URL(image, site.url);
           link_text: target.textContent?.trim() || undefined,
         });
       });
+    </script>
+
+    <!-- PWA：註冊 Service Worker -->
+    <script is:inline>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').catch(() => {});
+        });
+      }
     </script>
   </body>
 </html>

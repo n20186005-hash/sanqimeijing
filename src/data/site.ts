@@ -1,12 +1,14 @@
 export const site = {
   name: '三奇美徑',
   alternateName: '宜蘭冬山伯朗大道',
-  domain: 'SanqiMeijing.com',
-  url: 'https://SanqiMeijing.com',
+  domain: 'sanqimeijing.com',
+  url: 'https://sanqimeijing.com',
   description:
-    '三奇美徑完整旅行指南：查看宜蘭冬山伯朗大道的稻田季節、交通停車、拍照位置、散步與單車路線。',
+    '三奇美徑（宜蘭冬山伯朗大道）完整旅行指南：查看台灣宜蘭縣冬山鄉三奇村的稻田季節、交通停車、拍照位置、散步與單車路線。',
   address: '宜蘭縣冬山鄉三奇村，奉尊宮至協松路之間',
   navigationAddress: '宜蘭縣冬山鄉三奉路77號（三奇奉尊宮附近）',
+  fullAddress: '269台灣宜蘭縣冬山鄉三奇村三奉路77號',
+  postalCode: '269',
   phone: '03-9590799',
   coordinates: {
     latitude: 24.645495,
@@ -16,8 +18,30 @@ export const site = {
     'https://www.google.com/maps/dir/?api=1&destination=24.645495,121.8144542&destination_place_id=ChIJNd4uXproZzQRxz7YvvxXFDE',
   mapEmbedUrl:
     'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3626.3669370801877!2d121.8144542!3d24.645495!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3467e89a5e2ede35%3A0x311457fcbed83ec7!2z5a6c5YWw5Yas5bGx5Lyv5pyX5aSn6YGT!5e0!3m2!1szh-CN!2stw!4v1785315664342!5m2!1szh-CN!2stw',
+  mapsShareUrl: 'https://maps.app.goo.gl/D9CRUGVY4w5NEEGj9',
+  govtTourism: {
+    name: '宜蘭勁好玩（宜蘭縣政府官方旅遊網）',
+    url: 'https://travel.e-land.gov.tw/',
+  },
   ga4: 'G-HXM22WWPKP',
 } as const;
+
+// Google 地圖用戶評價（僅於頁面展示，不寫入 JSON-LD）
+export const reviews = {
+  rating: 4.0,
+  ratingLabel: '4.0',
+  count: 7375,
+  countLabel: '7,375',
+  syncedAt: '2026 年 9 月',
+  sourceNote: '評分與評價數同步自 Google 地圖用戶評價，同步時間 2026 年 9 月；版權歸原作者與 Google 地圖所有。',
+} as const;
+
+export const nearbyLandmarks = [
+  { name: '冬山火車站與冬山舊河道', description: '租借單車、老街漫步與水岸綠廊，適合作為單車路線的起終點。' },
+  { name: '冬山河生態綠舟', description: '大片草地與水域地景，距三奇美徑車程不遠，適合午後慢遊。' },
+  { name: '冬山河親水公園', description: '冬山河下游的水域園區，戲水、划船與夏季活動場地，適合親子旅客續攤。' },
+  { name: '大鯖魚夢工廠', description: '以鯖魚為主題的觀光工廠，有室內參觀與餐飲空間，適合雨天或午後備案。' },
+] as const;
 
 export const fieldStatus = {
   label: '本季田況',
@@ -79,6 +103,18 @@ export const faqs = [
   {
     question: '從冬山火車站怎麼去？',
     answer: '可搭乘冬山鄉免費巴士冬山線至奉尊宮站，或在冬山站周邊租自行車前往。巴士班次可能調整，出發前請再確認當期時刻。',
+  },
+  {
+    question: '稻田什麼時候收割？',
+    answer: '依往年農期，多在6月底至7月間進入收割，收割後田區可能轉為水田、整地或綠肥景觀。實際收割日期會受品種、天候與農務安排影響，出發前建議再確認當期田況。',
+  },
+  {
+    question: '三奇美徑可以騎自行車嗎？',
+    answer: '可以。田間道路平坦好騎，最常見的做法是在冬山火車站周邊租車，串聯舊河道與三奇美徑後原路返回。請禮讓農機與居民，夏季記得補水與防曬。',
+  },
+  {
+    question: '附近有什麼景點可以一起安排？',
+    answer: '常見的冬山半日遊組合是三奇美徑搭配冬山老街、冬山河親水公園，或安排大鯖魚夢工廠等室內觀光工廠作為雨備；時間較多時也可續往冬山河生態綠舟。',
   },
   {
     question: '適合帶小孩或長輩嗎？',

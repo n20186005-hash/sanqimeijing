@@ -1,0 +1,10 @@
+# HTTP → HTTPS：收回被 http:// 分散的曝光與權重
+http://sanqimeijing.com/*       https://sanqimeijing.com/:splat   301
+http://www.sanqimeijing.com/*   https://sanqimeijing.com/:splat   301
+
+# www → 主網域（單一標準網址）
+https://www.sanqimeijing.com/*  https://sanqimeijing.com/:splat   301
+
+# 首頁只保留一個版本
+/index.html     /   301
+/index.html/    /   301

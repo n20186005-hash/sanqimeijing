@@ -1,7 +1,32 @@
+# 依赖
 node_modules/
+# 安装失败残留（旧依赖重命名目录）
+.node_modules-old/
+
+# 构建输出
 dist/
 .astro/
+
+# 部署与本地环境
 .wrangler/
 .dev.vars
-.DS_Store
+.env
+.env.*
+
+# 日志 / 临时文件
 *.log
+*.tmp
+_tmp_*
+
+# 系统 / 编辑器
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# 包管理器锁文件（本项目使用 pnpm）
+package-lock.json
+yarn.lock
+
+# 本地 IDE / Agent 数据
+.codebuddy/

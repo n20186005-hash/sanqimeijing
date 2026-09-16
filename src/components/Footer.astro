@@ -1,5 +1,5 @@
 ---
-import { site } from '@/data/site';
+import { reviews, site } from '@/data/site';
 ---
 
 <footer class="border-t border-rice-200 bg-rice-950 text-white">
@@ -27,6 +27,8 @@ import { site } from '@/data/site';
       <div class="grid gap-2 text-sm text-white/70">
         <a class="hover:text-white" href="#season">稻田最佳季節</a>
         <a class="hover:text-white" href="#route">交通與停車</a>
+        <a class="hover:text-white" href="#reviews">Google 評價</a>
+        <a class="hover:text-white" href="#sources">資料來源</a>
         <a class="hover:text-white" href="#tips">旅行提醒</a>
         <a class="hover:text-white" href="/privacy/">隱私權說明</a>
       </div>
@@ -44,7 +46,11 @@ import { site } from '@/data/site';
   <div class="border-t border-white/10">
     <div class="section-shell flex flex-col gap-3 py-6 text-xs text-white/45 sm:flex-row sm:items-center sm:justify-between">
       <p>© {new Date().getFullYear()} {site.domain}．非官方旅遊指南</p>
-      <p>實景影像來源：宜蘭縣政府「宜蘭勁好玩」、冬山鄉公所</p>
+      <p>
+        實景影像來源：宜蘭縣政府「宜蘭勁好玩」、冬山鄉公所｜評分與評價數同步自
+        <a href={site.mapsShareUrl} target="_blank" rel="noopener noreferrer" class="hover:text-white">Google 地圖用戶評價（{reviews.syncedAt}）↗</a>
+        ｜<a href="#sources" class="hover:text-white">資料來源與更新說明</a>
+      </p>
     </div>
   </div>
 </footer>

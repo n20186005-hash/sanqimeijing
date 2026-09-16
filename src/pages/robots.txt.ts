@@ -3,7 +3,7 @@ import type { APIRoute } from 'astro';
 const robots = `User-agent: *
 Allow: /
 
-Sitemap: https://SanqiMeijing.com/sitemap.xml
+Sitemap: https://sanqimeijing.com/sitemap.xml
 `;
 
 export const GET: APIRoute = () =>
