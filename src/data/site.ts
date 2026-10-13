@@ -30,10 +30,10 @@ export const site = {
 export const reviews = {
   rating: 4.0,
   ratingLabel: '4.0',
-  count: 7375,
-  countLabel: '7,375',
-  syncedAt: '2026 年 9 月',
-  sourceNote: '評分與評價數同步自 Google 地圖用戶評價，同步時間 2026 年 9 月；版權歸原作者與 Google 地圖所有。',
+  count: 7382,
+  countLabel: '7,382',
+  syncedAt: '2026 年 10 月',
+  sourceNote: '評分與評價數同步自 Google 地圖用戶評價，同步時間 2026 年 10 月；版權歸原作者與 Google 地圖所有。',
 } as const;
 
 export const nearbyLandmarks = [
@@ -44,13 +44,14 @@ export const nearbyLandmarks = [
 ] as const;
 
 export const fieldStatus = {
-  label: '本季田況',
-  tone: 'harvested',
-  title: '主要稻浪季已告一段落',
+  label: '2026 年 10 月旅行參考',
+  tone: 'offseason',
+  title: '主要賞稻季通常已結束',
   description:
-    '依往年農期與本季活動時程，7月下旬多已進入收割後階段。田間道路仍可散步與騎行，實際田貌以當日農務為準。',
-  updatedAt: '2026-07-29',
-  nextBestWindow: '下一個主要賞景期：約翌年3月至6月',
+    '依往年農期，宜蘭一期稻作多在 6 月底至 7 月間收割；進入 10 月後，田區多以整地、二期作或綠肥景觀為主。建議以冬山鄉田園散步與自行車慢遊為主，現場作物景觀依當年農務安排而變化。',
+  sourceBasis: '本說明依歷年農期整理，非現場即時田況；若未實地核查，請勿標示為即時更新。',
+  updatedAt: '2026-10-13',
+  nextBestWindow: '下一個主要賞景期：約翌年 3 月至 6 月',
 } as const;
 
 export const facts = [

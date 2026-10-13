@@ -2,6 +2,9 @@ import type { APIRoute } from 'astro';
 
 const pages = [
   { path: '/', priority: '1.0', changefreq: 'weekly' },
+  { path: '/best-time/', priority: '0.8', changefreq: 'monthly' },
+  { path: '/transportation/', priority: '0.8', changefreq: 'monthly' },
+  { path: '/photo-spots/', priority: '0.7', changefreq: 'monthly' },
   { path: '/privacy/', priority: '0.2', changefreq: 'yearly' },
 ];
 

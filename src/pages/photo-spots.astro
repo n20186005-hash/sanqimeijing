@@ -1,0 +1,80 @@
+---
+import TopicLayout from '@/components/TopicLayout.astro';
+import { photoSpots } from '@/data/topics';
+---
+
+<TopicLayout
+  slug={photoSpots.slug}
+  eyebrow={photoSpots.eyebrow}
+  title={photoSpots.title}
+  metaTitle={photoSpots.metaTitle}
+  description={photoSpots.description}
+  intro={photoSpots.intro}
+  faqs={photoSpots.faqs}
+>
+  <!-- 三種視角 -->
+  <section>
+    <span class="eyebrow">Three Angles</span>
+    <h2 class="text-balance mt-5 font-serif text-3xl font-black text-rice-950 sm:text-4xl">三種看見田野的角度</h2>
+    <div class="mt-10 grid gap-6 lg:grid-cols-3">
+      <article class="group overflow-hidden rounded-[2.1rem] bg-white card-shadow">
+        <div class="overflow-hidden"><img src="/images/sanqi-green-road.jpg" alt="從較高視角拍攝三奇美徑田間道路與 S 彎" width="1920" height="1279" loading="lazy" class="aspect-[4/3] size-full object-cover" /></div>
+        <div class="p-7"><p class="text-xs font-black tracking-[0.14em] text-rice-600">01・高處全景</p><h3 class="mt-3 text-2xl font-black">看見道路穿過稻海</h3><p class="mt-3 text-sm leading-7 text-rice-800/66">較高視角最能呈現 S 彎、彩繪稻田與遠山。觀景設施依年度與活動安排開放，請以當期公告為準。</p></div>
+      </article>
+      <article class="group overflow-hidden rounded-[2.1rem] bg-white card-shadow">
+        <div class="overflow-hidden"><img src="/images/sanqi-view-platform.webp" alt="三奇美徑觀景平台眺望金黃稻田" width="1600" height="1068" loading="lazy" class="aspect-[4/3] size-full object-cover" /></div>
+        <div class="p-7"><p class="text-xs font-black tracking-[0.14em] text-rice-600">02・田邊側光</p><h3 class="mt-3 text-2xl font-black">拍稻穗與季節色彩</h3><p class="mt-3 text-sm leading-7 text-rice-800/66">日落前的側光會讓成熟稻穗更有層次。不要跨越農田邊界，也不要為取景踩入田埂。</p></div>
+      </article>
+      <article class="group overflow-hidden rounded-[2.1rem] bg-white card-shadow">
+        <div class="overflow-hidden"><img src="/images/sanqi-kite-festival.webp" alt="三奇美徑風箏活動與田野中的親子旅客" width="1600" height="1062" loading="lazy" class="aspect-[4/3] size-full object-cover" /></div>
+        <div class="p-7"><p class="text-xs font-black tracking-[0.14em] text-rice-600">03・季節活動</p><h3 class="mt-3 text-2xl font-black">把節慶留給當年的天空</h3><p class="mt-3 text-sm leading-7 text-rice-800/66">彩繪稻田、風箏與體驗活動並非全年常設，看到歷年照片時，要一併確認活動年份與是否當期舉辦。</p></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- 觀景設施 -->
+  <section class="mt-20">
+    <span class="eyebrow">Viewing Facility</span>
+    <h2 class="text-balance mt-5 font-serif text-3xl font-black text-rice-950 sm:text-4xl">觀景設施的開放情形</h2>
+    <div class="mt-8 overflow-hidden rounded-[2.25rem] bg-rice-800 p-8 text-white card-shadow sm:p-10">
+      <p class="pretty max-w-2xl leading-8 text-white/78">
+        三奇美徑周邊的觀景設施多配合年度活動或特定期間開放，並非全年常設；活動結束後可能關閉或限時開放。出發前請確認當期宜蘭縣政府或冬山鄉公所公告，不要預設當天一定開放。
+      </p>
+      <ul class="mt-7 grid gap-3 text-sm font-bold text-white/84">
+        <li class="flex gap-3"><span class="grid size-7 shrink-0 place-items-center rounded-full bg-white/12">✓</span>開放期通常集中在活動或特定賞景期間</li>
+        <li class="flex gap-3"><span class="grid size-7 shrink-0 place-items-center rounded-full bg-white/12">✓</span>現場若未開放，仍可於田邊道路安全處取景</li>
+        <li class="flex gap-3"><span class="grid size-7 shrink-0 place-items-center rounded-full bg-white/12">✓</span>以當期官方公告為準，避免白跑一趟</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 光線與空拍 -->
+  <section class="mt-20">
+    <span class="eyebrow">Light & Drone</span>
+    <h2 class="text-balance mt-5 font-serif text-3xl font-black text-rice-950 sm:text-4xl">光線時間與空拍須知</h2>
+    <div class="mt-10 grid gap-5 sm:grid-cols-2">
+      <div class="rounded-3xl border border-rice-200 bg-white p-7">
+        <p class="font-black text-rice-700">最佳光線</p>
+        <p class="mt-3 text-sm leading-7 text-rice-800/66">清晨與日落前約 2 小時通常最溫柔，稻穗側光與道路層次最明顯；夏季正午強光與曝曬不利拍攝也易中暑，藍調時刻前後適合拍田園剪影。</p>
+      </div>
+      <div class="rounded-3xl border border-rice-200 bg-white p-7">
+        <p class="font-black text-rice-700">空拍（無人機）</p>
+        <p class="mt-3 text-sm leading-7 text-rice-800/66">空拍須遵守民用航空法與當地相關規定，並避開人群、農機與活動管制區。田區屬私人農地，起降與飛行前請自行確認合法性與現場權屬。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 攝影禮儀 -->
+  <section class="mt-20">
+    <div class="overflow-hidden rounded-[2.5rem] bg-rice-100 p-8 sm:p-12">
+      <span class="eyebrow">Shooting Etiquette</span>
+      <h2 class="text-balance mt-5 font-serif text-3xl font-black text-rice-950 sm:text-4xl">拍得好看，也讓農田好好工作</h2>
+      <div class="mt-9 grid gap-5 sm:grid-cols-2">
+        <div class="rounded-3xl bg-white p-5"><p class="font-black text-rice-700">不走進稻田</p><p class="mt-2 text-sm leading-7 text-rice-800/66">留在柏油路、開放步道與指定觀景區域，不踩田埂或農田。</p></div>
+        <div class="rounded-3xl bg-white p-5"><p class="font-black text-rice-700">不阻擋農路</p><p class="mt-2 text-sm leading-7 text-rice-800/66">拍照、停車與單車休息時，保留農機通行空間。</p></div>
+        <div class="rounded-3xl bg-white p-5"><p class="font-black text-rice-700">不干擾居民</p><p class="mt-2 text-sm leading-7 text-rice-800/66">遇農機與居民通行請主動避讓，不進入私人院落。</p></div>
+        <div class="rounded-3xl bg-white p-5"><p class="font-black text-rice-700">標示拍攝季節</p><p class="mt-2 text-sm leading-7 text-rice-800/66">分享照片時註明拍攝季節，避免他人誤以為每天都是相同田況。</p></div>
+      </div>
+    </div>
+  </section>
+</TopicLayout>

@@ -1,0 +1,124 @@
+---
+import TopicLayout from '@/components/TopicLayout.astro';
+import { transportation } from '@/data/topics';
+import { site as siteData } from '@/data/site';
+---
+
+<TopicLayout
+  slug={transportation.slug}
+  eyebrow={transportation.eyebrow}
+  title={transportation.title}
+  metaTitle={transportation.metaTitle}
+  description={transportation.description}
+  intro={transportation.intro}
+  faqs={transportation.faqs}
+>
+  <!-- 自駕 -->
+  <section>
+    <span class="eyebrow">By Car</span>
+    <h2 class="text-balance mt-5 font-serif text-3xl font-black text-rice-950 sm:text-4xl">自駕與停車</h2>
+    <div class="mt-8 overflow-hidden rounded-[2rem] bg-white card-shadow">
+      <div class="grid gap-px bg-rice-200 sm:grid-cols-2">
+        <div class="bg-white p-7">
+          <p class="text-xs font-black tracking-[0.14em] text-rice-600">導航設定</p>
+          <h3 class="mt-3 text-xl font-black text-rice-950">三奇奉尊宮</h3>
+          <p class="mt-3 text-sm leading-7 text-rice-800/66">
+            建議直接導航「三奇奉尊宮」或宜蘭縣冬山鄉三奉路 77 號附近，抵達後再步行進入田間道路。不要為拍照把車開進核心農路。
+          </p>
+        </div>
+        <div class="bg-white p-7">
+          <p class="text-xs font-black tracking-[0.14em] text-rice-600">停車建議</p>
+          <h3 class="mt-3 text-xl font-black text-rice-950">奉尊宮周邊優先</h3>
+          <p class="mt-3 text-sm leading-7 text-rice-800/66">
+            以奉尊宮周邊或農路外側的開放空間為優先，避免占用路口、農路或妨礙農機通行處。假日與活動日車位有限，建議早點抵達。
+          </p>
+        </div>
+      </div>
+      <div class="border-t border-rice-200 p-7">
+        <p class="text-xs font-black tracking-[0.14em] text-rice-600">座標與 Plus Code</p>
+        <p class="mt-3 text-sm leading-7 text-rice-800/66">
+          約北緯 24.6455、東經 121.8145；Plus Code 為 <span class="font-black text-rice-950">JRW7+5Q</span>（台灣宜蘭縣冬山鄉三奇村）。導航軟體搜尋「三奇奉尊宮」通常最直接。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 大眾運輸 -->
+  <section class="mt-20">
+    <span class="eyebrow">Public Transit</span>
+    <h2 class="text-balance mt-5 font-serif text-3xl font-black text-rice-950 sm:text-4xl">從冬山火車站出發</h2>
+    <div class="mt-10 grid gap-6 lg:grid-cols-2">
+      <article class="rounded-[2rem] border border-rice-200 bg-white p-7 card-shadow">
+        <div class="flex items-center gap-4">
+          <span class="grid size-12 shrink-0 place-items-center rounded-2xl bg-rice-100 text-rice-700">
+            <svg viewBox="0 0 24 24" class="size-6" aria-hidden="true"><rect x="5" y="3" width="14" height="16" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 7h8v5H8zM8 19l-1 2m9-2 1 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="9" cy="15.5" r="1" fill="currentColor"/><circle cx="15" cy="15.5" r="1" fill="currentColor"/></svg>
+          </span>
+          <h3 class="text-xl font-black text-rice-950">台鐵至冬山站</h3>
+        </div>
+        <p class="mt-4 text-sm leading-7 text-rice-800/66">
+          搭乘台鐵至「冬山車站」，再轉乘其他交通工具進入三奇村。鐵路班次與轉乘資訊以台鐵公告為準。
+        </p>
+      </article>
+
+      <article class="rounded-[2rem] border border-rice-200 bg-white p-7 card-shadow">
+        <div class="flex items-center gap-4">
+          <span class="grid size-12 shrink-0 place-items-center rounded-2xl bg-rice-100 text-rice-700">
+            <svg viewBox="0 0 24 24" class="size-6" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </span>
+          <h3 class="text-xl font-black text-rice-950">冬山鄉免費巴士 冬山線</h3>
+        </div>
+        <p class="mt-4 text-sm leading-7 text-rice-800/66">
+          可搭乘冬山鄉免費巴士冬山線至奉尊宮站，下車後步行進入田間。巴士班次可能調整，出發前請再確認當期時刻。
+        </p>
+      </article>
+    </div>
+
+    <div class="mt-6 rounded-[2rem] border border-grain-300/50 bg-grain-100 p-6">
+      <p class="text-sm leading-7 text-rice-800/70">
+        更多宜蘭官方旅遊與大眾運輸資訊，請參閱
+        <a href={siteData.govtTourism.url} target="_blank" rel="noopener noreferrer" class="font-bold text-rice-800 underline decoration-rice-400 underline-offset-4 hover:text-rice-950">{siteData.govtTourism.name}↗</a>。
+      </p>
+    </div>
+  </section>
+
+  <!-- 單車與步行 -->
+  <section class="mt-20">
+    <span class="eyebrow">Bike & Walk</span>
+    <h2 class="text-balance mt-5 font-serif text-3xl font-black text-rice-950 sm:text-4xl">單車與步行路線</h2>
+    <div class="mt-8 overflow-hidden rounded-[2.25rem] bg-rice-800 p-8 text-white card-shadow sm:p-10">
+      <h3 class="font-serif text-2xl font-black">冬山車站 → 舊河道 → 三奇美徑</h3>
+      <p class="pretty mt-4 max-w-2xl leading-8 text-white/74">
+        從冬山火車站周邊租借自行車，經冬山舊河道綠廊串聯至三奇美徑，沿線平坦好騎，一般約 15–25 分鐘可到。夏季請準備補水與防曬，並在農路與路口禮讓農機與居民。
+      </p>
+      <ol class="mt-7 grid gap-3 text-sm font-bold text-white/84">
+        <li class="flex gap-3"><span class="grid size-7 shrink-0 place-items-center rounded-full bg-white/12">1</span>冬山火車站周邊租車</li>
+        <li class="flex gap-3"><span class="grid size-7 shrink-0 place-items-center rounded-full bg-white/12">2</span>經冬山舊河道綠廊</li>
+        <li class="flex gap-3"><span class="grid size-7 shrink-0 place-items-center rounded-full bg-white/12">3</span>騎往三奇美徑田間道路</li>
+        <li class="flex gap-3"><span class="grid size-7 shrink-0 place-items-center rounded-full bg-white/12">4</span>原路返回車站還車</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 導航 CTA -->
+  <section class="mt-20">
+    <div class="overflow-hidden rounded-[2.5rem] bg-rice-100 p-8 sm:p-12">
+      <div class="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <span class="eyebrow">Open Navigation</span>
+          <h2 class="text-balance mt-5 font-serif text-3xl font-black text-rice-950 sm:text-4xl">先導航到奉尊宮，再走進田裡</h2>
+          <p class="mt-4 max-w-xl text-sm leading-7 text-rice-800/66">自駕與步行都建議以三奇奉尊宮作為入口與停車基準，停妥後再步行進入農路。</p>
+        </div>
+        <a
+          href={siteData.mapUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-ga-event="map_click"
+          class="inline-flex shrink-0 items-center gap-3 rounded-full bg-rice-800 px-7 py-3.5 text-sm font-black text-white transition hover:-translate-y-0.5 hover:bg-rice-950"
+        >
+          <svg viewBox="0 0 24 24" class="size-5" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5Z"/></svg>
+          開啟 Google 地圖導航
+        </a>
+      </div>
+    </div>
+  </section>
+</TopicLayout>

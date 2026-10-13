@@ -1,0 +1,146 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { site } from '@/data/site';
+import { topics } from '@/data/topics';
+import type { TopicFAQ } from '@/data/topics';
+
+interface Props {
+  slug: string;
+  eyebrow: string;
+  title: string;
+  metaTitle: string;
+  description: string;
+  intro: string;
+  faqs: TopicFAQ[];
+  updatedAt?: string;
+}
+
+const { slug, eyebrow, title, metaTitle, description, intro, faqs, updatedAt = '2026-10-13' } = Astro.props;
+
+const canonical = new URL(`/${slug}/`, site.url);
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: '首頁', item: `${site.url}/` },
+    { '@type': 'ListItem', position: 2, name: title, item: canonical.href },
+  ],
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.answer,
+    },
+  })),
+};
+
+// 其他專題頁（用於頁尾相關連結）
+const related = topics.filter((t) => t.slug !== slug);
+---
+
+<BaseLayout title={metaTitle} description={description} image="/images/sanqi-green-road.jpg">
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <!-- Hero -->
+  <section class="relative isolate overflow-hidden bg-rice-950 text-white">
+    <img
+      src="/images/sanqi-golden-aerial.webp"
+      alt="三奇美徑（宜蘭冬山伯朗大道）金黃色稻田與彎曲農路俯瞰"
+      width="1920"
+      height="1275"
+      fetchpriority="high"
+      class="hero-image absolute inset-0 -z-20 size-full object-cover object-[60%_50%]"
+    />
+    <div class="hero-mask absolute inset-0 -z-10"></div>
+    <div class="absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-t from-rice-950/70 to-transparent"></div>
+
+    <div class="section-shell pb-16 pt-36 sm:pb-20 sm:pt-44">
+      <nav aria-label="麵包屑" class="mb-6 flex flex-wrap items-center gap-2 text-xs font-bold text-white/70">
+        <a href="/" class="hover:text-grain-300">首頁</a>
+        <svg viewBox="0 0 24 24" class="size-3.5" aria-hidden="true"><path d="m9 5 7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="text-white/90">{title}</span>
+      </nav>
+      <div class="max-w-3xl">
+        <span class="eyebrow !text-grain-300">{eyebrow}</span>
+        <h1 class="text-balance mt-5 font-serif text-5xl leading-[1.02] font-black tracking-[0.02em] sm:text-6xl lg:text-7xl">{title}</h1>
+        <p class="pretty mt-7 max-w-2xl text-base leading-8 text-white/76 sm:text-lg">{intro}</p>
+        <p class="mt-6 text-xs leading-6 text-white/50">資料依歷年農期與公開旅遊資訊整理，最後更新 {updatedAt}；現場仍以當日農務與公告為準。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 主體內容 -->
+  <div class="section-shell max-w-5xl py-20 sm:py-28">
+    <slot />
+  </div>
+
+  <!-- FAQ -->
+  <section class="border-t border-rice-200 py-20 sm:py-28">
+    <div class="section-shell grid gap-12 lg:grid-cols-[0.68fr_1.32fr] lg:gap-20">
+      <div>
+        <span class="eyebrow">FAQ</span>
+        <h2 class="text-balance mt-5 font-serif text-4xl leading-tight font-black text-rice-950 sm:text-5xl">關於這個主題，旅人常問</h2>
+        <p class="pretty mt-6 leading-8 text-rice-800/65">交通、田況與活動可能隨時間調整。以下整理以農期與公開旅遊資訊為基礎，現場仍以當日指示為準。</p>
+      </div>
+      <div class="divide-y divide-rice-200 border-y border-rice-200">
+        {faqs.map((faq, index) => (
+          <details class="group py-6" open={index === 0}>
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-5 text-lg font-black text-rice-950">
+              <span>{faq.question}</span>
+              <span class="grid size-9 shrink-0 place-items-center rounded-full bg-rice-100 text-rice-700 transition group-open:rotate-45">
+                <svg viewBox="0 0 24 24" class="size-4" aria-hidden="true"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              </span>
+            </summary>
+            <p class="max-w-3xl pt-4 pr-12 text-sm leading-7 text-rice-800/68">{faq.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 相關專題 -->
+  <section class="pb-24 sm:pb-32">
+    <div class="section-shell">
+      <div class="overflow-hidden rounded-[2.5rem] bg-rice-100 p-8 sm:p-12">
+        <span class="eyebrow">延伸專題</span>
+        <h2 class="text-balance mt-5 font-serif text-3xl font-black text-rice-950 sm:text-4xl">繼續規劃你的三奇美徑行程</h2>
+        <div class="mt-9 grid gap-5 md:grid-cols-2">
+          {related.map((topic) => (
+            <a
+              href={`/${topic.slug}/`}
+              class="group flex items-center justify-between gap-4 rounded-3xl border border-rice-200 bg-white p-6 card-shadow transition hover:-translate-y-0.5 hover:border-rice-400"
+            >
+              <div>
+                <p class="text-xs font-black tracking-[0.14em] text-rice-600">{topic.eyebrow}</p>
+                <p class="mt-2 text-xl font-black text-rice-950">{topic.title}</p>
+              </div>
+              <span class="grid size-11 shrink-0 place-items-center rounded-full bg-grain-100 text-rice-800 transition group-hover:bg-grain-300">
+                <svg viewBox="0 0 24 24" class="size-5" aria-hidden="true"><path d="m8 5 7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </a>
+          ))}
+          <a
+            href="/"
+            class="group flex items-center justify-between gap-4 rounded-3xl border border-rice-200 bg-white p-6 card-shadow transition hover:-translate-y-0.5 hover:border-rice-400"
+          >
+            <div>
+              <p class="text-xs font-black tracking-[0.14em] text-rice-600">回到首頁</p>
+              <p class="mt-2 text-xl font-black text-rice-950">三奇美徑總覽</p>
+            </div>
+            <span class="grid size-11 shrink-0 place-items-center rounded-full bg-grain-100 text-rice-800 transition group-hover:bg-grain-300">
+              <svg viewBox="0 0 24 24" class="size-5" aria-hidden="true"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { facts, faqs, fieldStatus, nearbyLandmarks, reviews, seasons, site } from '@/data/site';
+import { topics } from '@/data/topics';
 
 const touristAttractionSchema = {
   '@context': 'https://schema.org',
@@ -165,6 +166,7 @@ const faqSchema = {
           <h2 class="text-balance mt-10 font-serif text-4xl leading-tight font-black sm:text-5xl">{fieldStatus.title}</h2>
           <p class="mt-5 leading-8 text-white/72">{fieldStatus.description}</p>
           <div class="mt-8 border-t border-white/12 pt-5 text-sm font-bold text-grain-100">{fieldStatus.nextBestWindow}</div>
+          <p class="mt-4 text-xs leading-6 text-white/50">{fieldStatus.sourceBasis}</p>
         </div>
 
         <div class="relative overflow-hidden rounded-[2.25rem] bg-grain-100 p-8 sm:p-10">
@@ -278,6 +280,10 @@ const faqSchema = {
           <p class="pretty mt-5 max-w-md rounded-3xl border border-white/12 bg-white/[0.05] p-5 leading-8 text-white/78">
             一句話：<strong class="font-black text-grain-300">5 月至 6 月</strong>最值得安排，稻田由翠綠轉為金黃；<strong class="font-black text-grain-300">6 月底至 7 月</strong>陸續進入收割，地景會在短時間內改變。
           </p>
+          <a href="/best-time/" class="mt-5 inline-flex items-center gap-2 text-sm font-black text-grain-300 transition hover:gap-3">
+            看逐月田況與最佳賞景月份
+            <svg viewBox="0 0 24 24" class="size-4" aria-hidden="true"><path d="m8 5 7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
         </div>
 
         <div class="grid gap-4 sm:grid-cols-2">
@@ -328,6 +334,10 @@ const faqSchema = {
           <h2 class="text-balance mt-5 font-serif text-4xl leading-tight font-black text-rice-950 sm:text-6xl">三種看見田野的角度</h2>
         </div>
         <p class="max-w-md text-sm leading-7 text-rice-800/65">拍照時留在道路邊緣，遇到農機與居民通行請主動避讓；空拍須遵守當地與航空相關規定。</p>
+        <a href="/photo-spots/" class="mt-5 inline-flex items-center gap-2 text-sm font-black text-rice-800 transition hover:gap-3">
+          看觀景台、光線時間與拍攝禮儀
+          <svg viewBox="0 0 24 24" class="size-4" aria-hidden="true"><path d="m8 5 7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
       </div>
 
       <div class="mt-12 grid gap-6 lg:grid-cols-3">
@@ -391,6 +401,10 @@ const faqSchema = {
             更多宜蘭官方旅遊資訊，請參閱
             <a href={site.govtTourism.url} target="_blank" rel="noopener noreferrer" class="font-bold text-rice-800 underline decoration-rice-400 underline-offset-4 hover:text-rice-950">{site.govtTourism.name}↗</a>。
           </p>
+          <a href="/transportation/" class="mt-6 inline-flex items-center gap-2 text-sm font-black text-rice-800 transition hover:gap-3">
+            看完整交通與停車攻略
+            <svg viewBox="0 0 24 24" class="size-4" aria-hidden="true"><path d="m8 5 7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
         </div>
 
         <div class="sticky top-28 overflow-hidden rounded-[2.5rem] bg-white p-4 card-shadow sm:p-7">
@@ -672,6 +686,38 @@ const faqSchema = {
             </dd>
           </div>
         </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- 延伸專題 -->
+  <section class="border-t border-rice-200 py-24 sm:py-32">
+    <div class="section-shell">
+      <div class="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <span class="eyebrow">深入專題</span>
+          <h2 class="text-balance mt-5 font-serif text-4xl leading-tight font-black text-rice-950 sm:text-6xl">規劃一趟更完整的行程</h2>
+        </div>
+        <p class="max-w-md text-sm leading-7 text-rice-800/65">針對季節、交通與拍照需求，整理三篇首頁之外的實用專題，出發前先看。</p>
+      </div>
+
+      <div class="mt-12 grid gap-5 lg:grid-cols-3">
+        {topics.map((topic) => (
+          <a
+            href={`/${topic.slug}/`}
+            class="group flex flex-col justify-between rounded-[2.1rem] border border-rice-200 bg-white p-7 card-shadow transition hover:-translate-y-1 hover:border-rice-400"
+          >
+            <div>
+              <p class="text-xs font-black tracking-[0.14em] text-rice-600">{topic.eyebrow}</p>
+              <h3 class="mt-3 text-2xl font-black text-rice-950">{topic.title}</h3>
+              <p class="mt-3 text-sm leading-7 text-rice-800/66">{topic.description.slice(0, 46)}…</p>
+            </div>
+            <span class="mt-7 inline-flex items-center gap-2 text-sm font-black text-rice-800">
+              閱讀專題
+              <svg viewBox="0 0 24 24" class="size-4 transition group-hover:translate-x-1" aria-hidden="true"><path d="m8 5 7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </a>
+        ))}
       </div>
     </div>
   </section>
