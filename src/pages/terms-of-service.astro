@@ -1,0 +1,20 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { site } from '@/data/site';
+---
+
+<BaseLayout title={`服務條款｜${site.name}`} description="三奇美徑旅遊指南的資訊使用、外部連結及旅遊安全說明。">
+  <section class="bg-rice-950 pb-16 pt-36 text-white sm:pt-44"><div class="section-shell max-w-4xl">
+    <p class="text-xs font-black tracking-[0.18em] text-grain-300">TERMS OF SERVICE</p>
+    <h1 class="mt-5 font-serif text-5xl font-black sm:text-7xl">服務條款</h1>
+    <p class="mt-6 max-w-2xl leading-8 text-white/70">請在使用旅遊、路線及景點資訊前閱讀以下說明。</p>
+  </div></section>
+  <article class="section-shell max-w-4xl space-y-10 py-16 leading-8 text-rice-800/80 sm:py-24">
+    <section><h2 class="font-serif text-2xl font-black text-rice-950">一、服務目的</h2><p class="mt-3">本站整理三奇美徑及冬山周邊景點的公開旅遊資訊，供行程規劃與文化認識使用。本站為獨立旅遊資訊項目，與政府機關及景點管理單位無隸屬關係。</p></section>
+    <section><h2 class="font-serif text-2xl font-black text-rice-950">二、資訊的時效</h2><p class="mt-3">開放時間、票價、交通班次、季節稻況及活動安排可能臨時變動。本站會持續整理，但不保證所有資訊隨時即時或無誤。出發前應查閱景點管理單位、官方公告及現場資訊。</p></section>
+    <section><h2 class="font-serif text-2xl font-black text-rice-950">三、旅遊安全與農田禮儀</h2><p class="mt-3">行走或騎乘時請遵守道路規範，禮讓居民與農機，不進入私有農地、不攀越圍欄，不阻礙農務。請依個人身體狀況、天氣與現場環境決定行程。</p></section>
+    <section><h2 class="font-serif text-2xl font-black text-rice-950">四、外部服務與內容</h2><p class="mt-3">地圖導航、第三方評價、照片來源及外部連結由各服務提供者負責；本站不保證外部網站持續可用。本站文字及網站設計受相關權利保護，第三方照片與商標權利仍屬原權利人。</p></section>
+    <section><h2 class="font-serif text-2xl font-black text-rice-950">五、政策調整</h2><p class="mt-3">為改善使用體驗，本站可更新頁面及本條款；請以本頁公布內容為準。個人資料與分析 Cookie 的處理方式見 <a class="font-bold underline" href="/privacy-policy/">隱私政策</a>。</p></section>
+    <p class="rounded-2xl bg-rice-100 p-6 text-sm">最後更新：2026 年 11 月 18 日 · <a class="font-bold underline" href="/">返回三奇美徑首頁</a></p>
+  </article>
+</BaseLayout>

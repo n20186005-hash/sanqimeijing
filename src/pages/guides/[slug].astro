@@ -1,0 +1,35 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { guides } from '@/data/guides';
+import { site } from '@/data/site';
+export function getStaticPaths() { return guides.map((guide) => ({ params: { slug: guide.slug }, props: { guide } })); }
+const { guide } = Astro.props;
+const canonical = `${site.url}/guides/${guide.slug}/`;
+const breadcrumb = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: '首頁', item: `${site.url}/` }, { '@type': 'ListItem', position: 2, name: '旅遊專題', item: `${site.url}/guides/` }, { '@type': 'ListItem', position: 3, name: guide.title, item: canonical }] };
+---
+<BaseLayout title={`${guide.title}｜宜蘭冬山旅遊指南`} description={guide.description}>
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumb)} />
+  <section class="relative isolate overflow-hidden bg-rice-950 text-white">
+    <img src="/images/sanqi-golden-aerial.webp" alt="三奇美徑稻田與九道 S 彎的季節實景" width="1920" height="1275" class="absolute inset-0 -z-20 size-full object-cover opacity-30" />
+    <div class="section-shell pb-20 pt-40 sm:pt-48">
+      <nav class="text-sm text-white/70"><a href="/">首頁</a> / <a href="/guides/">旅遊專題</a> / {guide.title}</nav>
+      <p class="mt-12 text-sm font-bold tracking-widest text-grain-300">SANQI TRAVEL GUIDE</p>
+      <h1 class="mt-5 max-w-5xl font-serif text-5xl font-black leading-tight sm:text-6xl">{guide.title}</h1>
+      <p class="mt-5 text-xl font-bold text-grain-100">{guide.subtitle}</p>
+      <p class="mt-7 max-w-3xl text-lg leading-9 text-white/80">{guide.intro}</p>
+      <div class="mt-8 flex flex-wrap gap-3"><a class="rounded-full bg-grain-300 px-6 py-3 text-sm font-black text-rice-950" href={site.mapsShareUrl} target="_blank" rel="noopener noreferrer">三奇美徑 Google 地圖 ↗</a><a class="rounded-full border border-white/40 px-6 py-3 text-sm font-black" href="/nearby/">周邊景點</a></div>
+    </div>
+  </section>
+  <div class="section-shell grid gap-14 py-20 lg:grid-cols-[1.5fr_0.75fr] sm:py-28">
+    <article class="space-y-14">
+      {guide.sections.map((section) => <section><h2 class="font-serif text-3xl font-black text-rice-950 sm:text-4xl">{section.heading}</h2>{section.paragraphs.map((p) => <p class="mt-5 leading-9 text-rice-800/80">{p}</p>)}<ul class="mt-6 space-y-3">{section.bullets.map((bullet) => <li class="rounded-2xl bg-rice-100 px-6 py-4 leading-8 text-rice-800">{bullet}</li>)}</ul></section>)}
+      <section><p class="eyebrow">Step by Step</p><h2 class="mt-4 font-serif text-4xl font-black text-rice-950">建議遊覽順序</h2><ol class="mt-8 space-y-5">{guide.steps.map((step, index) => <li class="flex gap-5"><span class="grid size-10 shrink-0 place-items-center rounded-full bg-rice-800 font-black text-white">{index + 1}</span><p class="pt-1 leading-8 text-rice-800">{step}</p></li>)}</ol></section>
+      <section><p class="eyebrow">FAQ</p><h2 class="mt-4 font-serif text-4xl font-black text-rice-950">常見問題</h2><div class="mt-6 divide-y divide-rice-200 border-y border-rice-200">{guide.faqs.map((faq) => <div class="py-6"><h3 class="text-lg font-black text-rice-950">{faq.q}</h3><p class="mt-3 leading-8 text-rice-800/75">{faq.a}</p></div>)}</div></section>
+    </article>
+    <aside class="lg:sticky lg:top-28 lg:self-start">
+      <div class="rounded-[2rem] bg-grain-100 p-8"><h2 class="font-serif text-2xl font-black text-rice-950">出發前資訊</h2><p class="mt-4 text-sm leading-8 text-rice-800">三奇美徑位於宜蘭縣冬山鄉三奇村，核心田間道路免費參觀；交通與活動設施依當期規範。</p><a class="mt-5 inline-block rounded-full bg-rice-800 px-5 py-3 text-sm font-bold text-white" href="/transportation/">交通停車攻略</a><p class="mt-7 text-xs leading-7 text-rice-700/75">內容整理：2026 年 11 月；活動時程、票務與交通出發前請現場核實。</p></div>
+      <div class="mt-6 rounded-[2rem] border border-rice-200 p-8"><h2 class="font-serif text-2xl font-black text-rice-950">官方資料來源</h2><ul class="mt-5 space-y-4 text-sm leading-7">{guide.sources.map((source) => <li><a class="font-bold text-rice-700 underline" href={source.url} target="_blank" rel="noopener noreferrer">{source.title} ↗</a></li>)}</ul></div>
+    </aside>
+  </div>
+  <section class="bg-rice-100 py-16"><div class="section-shell"><h2 class="font-serif text-3xl font-black text-rice-950">延伸探索</h2><div class="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{guides.filter((other) => other.slug !== guide.slug).map((other) => <a class="rounded-2xl bg-white p-6 font-bold text-rice-950" href={`/guides/${other.slug}/`}>{other.title} →</a>)}<a class="rounded-2xl bg-white p-6 font-bold text-rice-950" href="/nearby/">更多周邊景點 →</a></div></div></section>
+</BaseLayout>

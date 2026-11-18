@@ -1,11 +1,21 @@
 import type { APIRoute } from 'astro';
+import { nearbyPlaces } from '@/data/nearby';
+import { guides } from '@/data/guides';
 
 const pages = [
   { path: '/', priority: '1.0', changefreq: 'weekly' },
   { path: '/best-time/', priority: '0.8', changefreq: 'monthly' },
   { path: '/transportation/', priority: '0.8', changefreq: 'monthly' },
   { path: '/photo-spots/', priority: '0.7', changefreq: 'monthly' },
+  { path: '/nearby/', priority: '0.8', changefreq: 'monthly' },
+  { path: '/guides/', priority: '0.8', changefreq: 'monthly' },
+  ...guides.map((guide) => ({ path: `/guides/${guide.slug}/`, priority: '0.7', changefreq: 'monthly' })),
+  ...nearbyPlaces.map((place) => ({ path: `/nearby/${place.slug}/`, priority: '0.7', changefreq: 'monthly' })),
   { path: '/privacy/', priority: '0.2', changefreq: 'yearly' },
+  { path: '/sources/', priority: '0.3', changefreq: 'monthly' },
+  { path: '/privacy-policy/', priority: '0.2', changefreq: 'yearly' },
+  { path: '/terms-of-service/', priority: '0.2', changefreq: 'yearly' },
+  { path: '/cookie-settings/', priority: '0.2', changefreq: 'yearly' },
 ];
 
 export const GET: APIRoute = () => {

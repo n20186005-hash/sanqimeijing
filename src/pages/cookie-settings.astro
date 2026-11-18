@@ -1,0 +1,38 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { site } from '@/data/site';
+---
+
+<BaseLayout title={`Cookie 設置｜${site.name}`} description="調整三奇美徑旅遊指南的分析 Cookie 偏好；必要的網站功能不受影響。">
+  <section class="bg-rice-950 pb-16 pt-36 text-white sm:pt-44"><div class="section-shell max-w-4xl">
+    <p class="text-xs font-black tracking-[0.18em] text-grain-300">COOKIE SETTINGS</p>
+    <h1 class="mt-5 font-serif text-5xl font-black sm:text-7xl">Cookie 設置</h1>
+    <p class="mt-6 max-w-2xl leading-8 text-white/70">由你決定是否同意分析 Cookie；選擇可隨時更新。</p>
+  </div></section>
+  <article class="section-shell max-w-4xl space-y-8 py-16 leading-8 text-rice-800/80 sm:py-24">
+    <section class="rounded-3xl border border-rice-200 p-6 sm:p-8"><h2 class="font-serif text-2xl font-black text-rice-950">必要功能</h2><p class="mt-3">網站使用必要的瀏覽器功能，以顯示頁面、記住你的 Cookie 選擇並提供基本導覽。這類功能不會因拒絕分析 Cookie 而關閉。</p><p class="mt-3 text-sm font-bold text-rice-950">始終可用</p></section>
+    <section class="rounded-3xl border border-rice-200 p-6 sm:p-8"><h2 class="font-serif text-2xl font-black text-rice-950">分析 Cookie（可選）</h2><p class="mt-3">若你同意，本站會載入 Google Analytics 4，協助了解整體頁面瀏覽及使用情況。拒絕後，本站不會載入這項分析服務。</p>
+      <p id="consent-status" class="mt-4 font-bold text-rice-950" aria-live="polite">正在讀取偏好…</p>
+      <div class="mt-5 flex flex-wrap gap-3">
+        <button id="accept-analytics" type="button" class="rounded-full bg-rice-950 px-6 py-3 text-sm font-bold text-white hover:opacity-85">同意分析 Cookie</button>
+        <button id="decline-analytics" type="button" class="rounded-full border border-rice-300 px-6 py-3 text-sm font-bold text-rice-950 hover:bg-rice-100">拒絕分析 Cookie</button>
+      </div>
+      <p class="mt-4 text-sm">選擇會儲存於目前瀏覽器。修改後重新整理頁面，即會套用至後續瀏覽。</p>
+    </section>
+    <section><h2 class="font-serif text-2xl font-black text-rice-950">如何清除偏好？</h2><p class="mt-3">你可以使用上方按鈕修改選擇，或清除此網站的瀏覽器儲存資料。詳細資料使用方式見 <a class="font-bold underline" href="/privacy-policy/">隱私政策</a>。</p></section>
+    <p class="rounded-2xl bg-rice-100 p-6 text-sm">最後更新：2026 年 11 月 18 日 · <a class="font-bold underline" href="/">返回三奇美徑首頁</a></p>
+  </article>
+  <script is:inline>
+    const status = document.getElementById('consent-status');
+    const read = () => { try { return localStorage.getItem('sanqi-analytics-consent'); } catch (_) { return null; } };
+    const show = () => { const value = read(); status.textContent = value === 'granted' ? '目前選擇：已同意分析 Cookie' : value === 'denied' ? '目前選擇：已拒絕分析 Cookie' : '目前選擇：未同意（分析 Cookie 關閉）'; };
+    show();
+    const save = (value) => {
+      try { localStorage.setItem('sanqi-analytics-consent', value); } catch (_) { status.textContent = '瀏覽器禁止儲存偏好，請檢查隱私設定'; return; }
+      show();
+      window.location.reload();
+    };
+    document.getElementById('accept-analytics')?.addEventListener('click', () => save('granted'));
+    document.getElementById('decline-analytics')?.addEventListener('click', () => save('denied'));
+  </script>
+</BaseLayout>

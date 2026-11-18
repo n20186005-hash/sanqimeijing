@@ -63,14 +63,25 @@ const ogImage = new URL(image, site.url);
 
     <link rel="preload" href="/images/sanqi-green-road.jpg" as="image" fetchpriority="high" />
 
-    <!-- Google tag (gtag.js) -->
-    <script async src={`https://www.googletagmanager.com/gtag/js?id=${site.ga4}`}></script>
+    <!-- Consent defaults to denied until the visitor makes a choice. -->
     <script is:inline define:vars={{ measurementId: site.ga4 }}>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+      window.gtag = gtag;
+      gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+      let analyticsChoice = null;
+      try { analyticsChoice = localStorage.getItem('sanqi-analytics-consent'); } catch (_) {}
+      if (analyticsChoice === 'granted') {
+        gtag('consent', 'update', { analytics_storage: 'granted' });
+      }
+      if (analyticsChoice === 'granted') {
+        const tag = document.createElement('script');
+        tag.async = true;
+        tag.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(measurementId);
+        document.head.appendChild(tag);
+      }
       gtag('js', new Date());
       gtag('config', measurementId, { anonymize_ip: true });
-      window.gtag = gtag;
     </script>
   </head>
   <body>

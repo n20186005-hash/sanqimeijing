@@ -1,0 +1,22 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { site } from '@/data/site';
+---
+
+<BaseLayout title={`隱私政策｜${site.name}`} description="了解三奇美徑旅遊指南如何處理網站分析、Cookie、外部連結與個人資料。">
+  <section class="bg-rice-950 pb-16 pt-36 text-white sm:pt-44">
+    <div class="section-shell max-w-4xl">
+      <p class="text-xs font-black tracking-[0.18em] text-grain-300">PRIVACY POLICY</p>
+      <h1 class="mt-5 font-serif text-5xl font-black sm:text-7xl">隱私政策</h1>
+      <p class="mt-6 max-w-2xl leading-8 text-white/70">清楚說明本站使用哪些資料，以及訪客可以如何選擇。</p>
+    </div>
+  </section>
+  <article class="section-shell max-w-4xl space-y-10 py-16 leading-8 text-rice-800/80 sm:py-24">
+    <section><h2 class="font-serif text-2xl font-black text-rice-950">一、本站蒐集的資訊</h2><p class="mt-3">本站為公開旅遊資訊網站，不設會員註冊、線上付款或訂房功能，亦不主動要求訪客提供姓名、電話或身分證字號。伺服器及網路服務供應商可能因維護安全與運作而處理必要的連線紀錄。</p></section>
+    <section><h2 class="font-serif text-2xl font-black text-rice-950">二、網站分析與 Cookie</h2><p class="mt-3">本站使用 Google Analytics 4，以瞭解整體流量及頁面使用情況。分析 Cookie 預設不啟用；僅在訪客選擇同意後才載入分析服務。可隨時前往 <a class="font-bold underline" href="/cookie-settings/">Cookie 設置</a> 調整偏好。</p></section>
+    <section><h2 class="font-serif text-2xl font-black text-rice-950">三、外部網站及地圖</h2><p class="mt-3">本站提供 Google 地圖、政府旅遊網站及其他參考來源連結。離開本站後，該網站將依其自身政策處理資料；建議在使用前閱讀各服務的隱私說明。</p></section>
+    <section><h2 class="font-serif text-2xl font-black text-rice-950">四、資料保存與權利</h2><p class="mt-3">本站以瀏覽器本機儲存空間保存 Cookie 偏好，供下次造訪使用；訪客可透過 Cookie 設置修改或清除瀏覽器網站資料。Google Analytics 資料之處理依 Google 的服務政策與本站設定執行。</p></section>
+    <section><h2 class="font-serif text-2xl font-black text-rice-950">五、內容更新</h2><p class="mt-3">本政策會隨網站功能調整。景點資訊及外部服務可能變動，使用前可重新閱讀本頁與 <a class="font-bold underline" href="/terms-of-service/">服務條款</a>。</p></section>
+    <p class="rounded-2xl bg-rice-100 p-6 text-sm">最後更新：2026 年 11 月 18 日 · <a class="font-bold underline" href="/">返回三奇美徑首頁</a></p>
+  </article>
+</BaseLayout>

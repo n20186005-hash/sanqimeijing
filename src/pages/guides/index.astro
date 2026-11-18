@@ -1,0 +1,8 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { guides } from '@/data/guides';
+---
+<BaseLayout title="三奇美徑深度旅遊專題｜季節、活動、單車與一日遊" description="從彩繪稻田與年度活動到三奇美徑單車、宜蘭伯朗大道一日遊與秋冬非稻季攻略，依需求選擇實用專題。">
+  <section class="bg-rice-950 pb-20 pt-40 text-white"><div class="section-shell"><nav class="text-sm text-white/70"><a href="/">首頁</a> / 旅遊專題</nav><p class="mt-10 text-sm font-black tracking-widest text-grain-300">TRAVEL GUIDES</p><h1 class="mt-5 font-serif text-5xl font-black sm:text-6xl">三奇美徑深度旅遊專題</h1><p class="mt-6 max-w-3xl text-lg leading-9 text-white/75">稻田會隨農期變化，活動與交通也有季節差異。依自己的出遊時間，挑選最有用的規劃指南。</p></div></section>
+  <section class="section-shell grid gap-6 py-20 md:grid-cols-2 sm:py-28">{guides.map((guide) => <a href={`/guides/${guide.slug}/`} class="group rounded-[2rem] border border-rice-200 bg-white p-8 card-shadow transition hover:-translate-y-1"><p class="text-xs font-black tracking-widest text-rice-600">SANQI GUIDE</p><h2 class="mt-4 font-serif text-3xl font-black text-rice-950">{guide.title}</h2><p class="mt-3 font-bold text-rice-700">{guide.subtitle}</p><p class="mt-5 text-sm leading-8 text-rice-800/70">{guide.intro}</p><span class="mt-6 inline-block font-bold text-rice-700">閱讀專題 →</span></a>)}</section>
+</BaseLayout>

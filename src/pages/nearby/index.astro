@@ -1,0 +1,42 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { nearbyPlaces, nearbyMap } from '@/data/nearby';
+import { site } from '@/data/site';
+const title = '三奇美徑附近景點｜冬山河生態綠舟、親水公園與冬山舊河道';
+const description = '三奇美徑附近景點與冬山半日、一日遊規劃：逐一比較河岸公園、舊河道與車站，附專屬 Google 地圖、交通、開放資訊與順遊建議。';
+---
+<BaseLayout title={title} description={description}>
+  <section class="bg-rice-950 pt-40 pb-20 text-white sm:pt-48">
+    <div class="section-shell">
+      <nav class="text-sm text-white/70"><a href="/" class="hover:text-grain-300">首頁</a> / 周邊探索</nav>
+      <span class="eyebrow !text-grain-300 mt-9">Explore Dongshan</span>
+      <h1 class="mt-5 max-w-4xl font-serif text-5xl font-black leading-tight sm:text-6xl">三奇美徑附近景點</h1>
+      <p class="mt-7 max-w-3xl text-lg leading-9 text-white/75">在稻浪之外，冬山還有舊河道、森林與親水空間。以下景點都設有獨立專頁與專屬導航，方便依季節、體力與天候規劃路線。</p>
+    </div>
+  </section>
+  <section class="section-shell py-20 sm:py-28">
+    <div class="grid gap-6 lg:grid-cols-3">
+      {nearbyPlaces.map((place) => <article class="overflow-hidden rounded-[2rem] border border-rice-200 bg-white card-shadow">
+        <a href={`/nearby/${place.slug}/`} aria-label={`查看${place.name}景點介紹`}><img src={`/images/nearby/${place.slug}.jpg`} alt={`${place.name}官方景點實景照片`} width="1920" height="1080" loading="lazy" class="aspect-[16/10] w-full object-cover" /></a>
+        <div class="p-7">
+        <p class="text-xs font-black tracking-widest text-rice-600">{place.type}</p>
+        <h2 class="mt-4 font-serif text-3xl font-black text-rice-950"><a class="hover:text-rice-600" href={`/nearby/${place.slug}/`}>{place.name}</a></h2>
+        <p class="mt-2 font-bold text-rice-700">{place.subtitle}</p>
+        <p class="mt-5 text-sm leading-7 text-rice-800/75">{place.summary}</p>
+        <p class="mt-5 text-sm text-rice-800/65">建議停留：{place.stay}</p>
+        <div class="mt-7 flex flex-wrap gap-3"><a class="rounded-full bg-rice-800 px-5 py-3 text-sm font-bold text-white" href={`/nearby/${place.slug}/`}>查看景點指南</a><a class="rounded-full border border-rice-300 px-5 py-3 text-sm font-bold text-rice-800" href={nearbyMap(place)} target="_blank" rel="noopener noreferrer">Google 地圖 ↗</a></div>
+        </div>
+      </article>)}
+    </div>
+    <div class="mt-16 rounded-[2rem] bg-grain-100 p-8 sm:p-12">
+      <h2 class="font-serif text-3xl font-black text-rice-950">怎麼安排半日與一日行程？</h2>
+      <ol class="mt-6 grid gap-5 text-sm leading-7 text-rice-800/80 md:grid-cols-3">
+        <li><strong>上午賞田：</strong>從 <a class="underline" href="/">三奇美徑</a> 開始，依 <a class="underline" href="/best-time/">稻田月份</a> 判斷是否值得看稻浪。</li>
+        <li><strong>中午看聚落：</strong>回冬山車站和舊河道散步，安排午餐與休息，避開稻田正午曝曬。</li>
+        <li><strong>下午看河景：</strong>選生態綠舟慢遊或前往親水公園；兩者活動與門票需分別核查。</li>
+      </ol>
+      <p class="mt-7 text-sm leading-7 text-rice-800/65">三奇美徑位於冬山鄉三奇村；冬山河親水公園位於五結鄉，並非步行幾分鐘就到。交通時間應以當日 Google 地圖路況為準。</p>
+    </div>
+    <div class="mt-12 flex flex-wrap gap-4 text-sm font-bold"><a href="/transportation/" class="underline">三奇美徑交通停車</a><a href="/photo-spots/" class="underline">拍照機位</a><a href={site.mapsShareUrl} target="_blank" rel="noopener noreferrer" class="underline">三奇美徑原始地圖 ↗</a></div>
+  </section>
+</BaseLayout>

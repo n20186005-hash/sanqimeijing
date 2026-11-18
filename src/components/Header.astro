@@ -17,13 +17,15 @@ import { site } from '@/data/site';
       </span>
     </a>
 
-    <nav class="hidden items-center gap-7 text-sm font-semibold lg:flex" aria-label="主要導覽">
-      <a class="transition hover:text-grain-300" href="#about">認識美徑</a>
-      <a class="transition hover:text-grain-300" href="#season">最佳季節</a>
-      <a class="transition hover:text-grain-300" href="#route">交通路線</a>
-      <a class="transition hover:text-grain-300" href="#gallery">田野影像</a>
-      <a class="transition hover:text-grain-300" href="#reviews">旅人評價</a>
-      <a class="transition hover:text-grain-300" href="#faq">常見問題</a>
+    <nav class="hidden items-center gap-5 text-sm font-semibold xl:flex" aria-label="主要導覽">
+      <a class="transition hover:text-grain-300" href="/#about">認識美徑</a>
+      <a class="transition hover:text-grain-300" href="/#season">最佳季節</a>
+      <a class="transition hover:text-grain-300" href="/#route">交通路線</a>
+      <a class="transition hover:text-grain-300" href="/nearby/">周邊景點</a>
+      <a class="transition hover:text-grain-300" href="/guides/">旅遊指南</a>
+      <a class="transition hover:text-grain-300" href="/#gallery">田野影像</a>
+      <a class="transition hover:text-grain-300" href="/#reviews">旅人評價</a>
+      <a class="transition hover:text-grain-300" href="/sources/">資料來源</a>
     </nav>
 
     <div class="flex items-center gap-3">
@@ -38,18 +40,21 @@ import { site } from '@/data/site';
         開啟導航
       </a>
 
-      <details class="relative lg:hidden">
+      <details class="relative xl:hidden">
         <summary class="grid size-10 cursor-pointer list-none place-items-center rounded-full border border-white/25 bg-white/10" aria-label="開啟選單">
           <svg viewBox="0 0 24 24" class="size-5" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
         </summary>
         <div class="absolute right-0 mt-3 w-64 overflow-hidden rounded-3xl border border-white/15 bg-rice-950/95 p-3 shadow-2xl backdrop-blur-xl">
           <nav class="grid text-sm font-bold" aria-label="行動版導覽">
-            <a class="rounded-2xl px-4 py-3 hover:bg-white/10" href="#about">認識美徑</a>
-            <a class="rounded-2xl px-4 py-3 hover:bg-white/10" href="#season">最佳季節</a>
-            <a class="rounded-2xl px-4 py-3 hover:bg-white/10" href="#route">交通路線</a>
-            <a class="rounded-2xl px-4 py-3 hover:bg-white/10" href="#gallery">田野影像</a>
-            <a class="rounded-2xl px-4 py-3 hover:bg-white/10" href="#reviews">旅人評價</a>
-            <a class="rounded-2xl px-4 py-3 hover:bg-white/10" href="#faq">常見問題</a>
+            <a class="rounded-2xl px-4 py-3 hover:bg-white/10" href="/#about">認識美徑</a>
+            <a class="rounded-2xl px-4 py-3 hover:bg-white/10" href="/#season">最佳季節</a>
+            <a class="rounded-2xl px-4 py-3 hover:bg-white/10" href="/#route">交通路線</a>
+            <a class="rounded-2xl px-4 py-3 hover:bg-white/10" href="/nearby/">周邊景點</a>
+            <a class="rounded-2xl px-4 py-3 hover:bg-white/10" href="/guides/">旅遊指南</a>
+            <a class="rounded-2xl px-4 py-3 hover:bg-white/10" href="/#gallery">田野影像</a>
+            <a class="rounded-2xl px-4 py-3 hover:bg-white/10" href="/#reviews">旅人評價</a>
+            <a class="rounded-2xl px-4 py-3 hover:bg-white/10" href="/sources/">資料來源</a>
+            <a class="rounded-2xl px-4 py-3 hover:bg-white/10" href="/#faq">常見問題</a>
             <a class="border-t border-white/10 px-4 py-3 text-grain-300 hover:bg-white/10" href="/best-time/">最佳季節專題</a>
             <a class="px-4 py-3 text-grain-300 hover:bg-white/10" href="/transportation/">交通停車專題</a>
             <a class="px-4 py-3 text-grain-300 hover:bg-white/10" href="/photo-spots/">觀景拍照專題</a>
