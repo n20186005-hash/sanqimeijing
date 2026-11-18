@@ -1,9 +1,6 @@
-# HTTP → HTTPS：收回被 http:// 分散的曝光與權重
-http://sanqimeijing.com/*       https://sanqimeijing.com/:splat   301
-http://www.sanqimeijing.com/*   https://sanqimeijing.com/:splat   301
-
-# www → 主網域（單一標準網址）
-https://www.sanqimeijing.com/*  https://sanqimeijing.com/:splat   301
+# 此檔僅支援相對路徑重定向。
+# HTTP → HTTPS 及 www → 主網域請在 Cloudflare 的 Redirect Rules 設定，
+# 避免 Worker Assets 部署因絕對 URL 而失敗。
 
 # 首頁只保留一個版本
 /index.html     /   301
